@@ -22,6 +22,14 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        solicitar = prompt(title="titulo", prompt="ingrese un numero")
+        contador = 0
+        solicitar = int(solicitar)
+        for i in range(1,solicitar + 1):
+            if solicitar % i == 0 :
+                print(i)
+                contador += 1
+        print("la cantidad de numerops divisibles son ",contador)
         pass
         
     

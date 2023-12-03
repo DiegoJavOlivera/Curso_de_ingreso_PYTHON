@@ -24,6 +24,14 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
+        lista = self.lista_datos
+        minimo = lista[0]
+        for i in lista:
+            if i < minimo:
+                minimo = i
+        minimo_ = min(self.lista_datos)
+        print ("el mininmo de la lista es",minimo)
+        alert(title="titul",message=minimo_)
         pass
     
     

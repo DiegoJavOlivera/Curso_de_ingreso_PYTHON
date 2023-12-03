@@ -22,6 +22,13 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        solicitar = prompt(title="titulo", prompt="Ingresar un numero")
+        solicitar = int(solicitar)
+        inicio = 1
+        print(inicio)
+        for i in range(2 ,solicitar+1 ,2):
+            print(i)
+        
         pass
         
     

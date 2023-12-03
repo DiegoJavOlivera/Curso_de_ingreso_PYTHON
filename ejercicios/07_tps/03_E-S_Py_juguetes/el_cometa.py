@@ -66,6 +66,21 @@ class App(customtkinter.CTk):
         self.btn_mostrar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_mostrar_on_click(self):
+        DC = int(self.txt_diametro_menor.get())
+        BD_BC = int(self.txt_lados_menores.get())
+        AD_AC = int(self.txt_lados_mayores.get())
+
+        AB = ((BD_BC + BD_BC) * DC) / (DC - BD_BC - BD_BC)
+        perimetro_total = AD_AC + AD_AC + 2 * math.sqrt(BD_BC**2 + BD_BC**2)
+        area_Cuerpo_total = ((AB + DC)/2) * math.sqrt(AD_AC**2 - BD_BC**2)
+        area_cola_total = 1.1 * area_Cuerpo_total
+
+        papel_necesario = area_Cuerpo_total + area_cola_total
+        varillas_plastico_necesarias = perimetro_total
+
+        alert("Resultados",
+                f"Papel necesario para 1 cometa: {papel_necesario} cm²\n"
+                f"Varillas de plástico necesarias para 1 cometa: {math.floor(varillas_plastico_necesarias)} cm")
         pass
     
 if __name__ == "__main__":

@@ -6,6 +6,8 @@ import customtkinter
 
 
 '''
+Nombre: Diego Javier
+Apellido: Olivera
 Enunciado:
 Obtener la hora ingresada en el cuadro de texto txt_hora. 
 Al presionar el botón ‘Informar’ mostrar mediante alert alguno de los 
@@ -34,6 +36,18 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
+        hora = int(self.txt_hora.get())
+        match hora:
+            case 7|8|9|10|11:
+                alert(title="titulo", message="Es de mañana")
+            case 12|13|14|15|16|17|18|19:
+                alert(title="titulo", message="Es de tarde")
+            case 20|21|22|23|24:
+                alert(title="titulo", message="Es de noche")
+            case 0|1|2|3|4|5|6:
+                alert(title="titulo",message="Es de noche")
+            case _:
+                alert(title="titulo", message="La hora no existe")
         pass
     
     

@@ -21,6 +21,9 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        solicitar = prompt(title="titulo",prompt="ingresar valores del 1 al 10")
+        while solicitar != "9":
+            solicitar = prompt(title="titulo",prompt="ingresar valores del 1 al 10")
         pass
         
     

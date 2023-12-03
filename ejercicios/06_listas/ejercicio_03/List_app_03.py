@@ -24,6 +24,15 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
+
+        lista = self.lista_datos
+        maximo = lista[0]
+        for i in lista:
+            if i > maximo:
+                maximo = i
+                print("el numero maximo es ",i)
+        maximo_= max(lista)
+        print("maximo con metodo max() ",maximo_)
         pass
     
 if __name__ == "__main__":

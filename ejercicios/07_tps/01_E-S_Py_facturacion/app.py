@@ -48,12 +48,45 @@ class App(customtkinter.CTk):
         self.btn_total_iva.grid(row=5, pady=10, columnspan=2, sticky="nsew")
 
     def btn_total_on_click(self):
-        pass
+        try:
+            produc1 = int(self.txt_importe_1.get())
+            produc2 = int(self.txt_importe_2.get())
+            produc3 = int(self.txt_importe_3.get())
+            suma = 0
+            suma += produc1 + produc2 + produc3 
+            alert(title="titulo",message=f"La suma de todos los productos ingresados es {suma}")
+        except:
+            alert(title="titulo",message="El usuario ingreso una latra, intente nuevamente, intentar denuevo y ingresar un numero")
+            pass
 
     def btn_promedio_on_click(self):
+        try:
+            produc1_promedio = int(self.txt_importe_1.get())
+            produc2_promedio = int(self.txt_importe_2.get())
+            produc3_promedio = int(self.txt_importe_3.get())
+            suma = 0
+            cantidad_produc = 3
+            suma += produc1_promedio + produc2_promedio + produc3_promedio
+            suma /= cantidad_produc
+            alert(title="titulo",message=f"el promedio de los 3 productos es {int(suma)}")
+        except:
+            alert(title="titulo",message="El usuario ingreso una letra, intentar denuevo y ingresar un numero")
         pass
 
     def btn_total_iva_on_click(self):
+        try:
+            produc1_iva = int(self.txt_importe_1.get())
+            produc2_iva = int(self.txt_importe_2.get())
+            produc3_iva = int(self.txt_importe_3.get())
+            suma = 0
+            suma += produc1_iva + produc2_iva + produc3_iva
+            total = suma
+            suma *= 0.21
+            totalIva = suma
+            total += suma
+            alert(title="titulo",message=f"El total de los 3 productos del 21% es de {totalIva}, el total del precio final es de {total}")
+        except:
+            alert(title="titulo",message="El usuario ingreso una letra, intentar denuevo y ingresar un numero")
         pass      
     
 if __name__ == "__main__":

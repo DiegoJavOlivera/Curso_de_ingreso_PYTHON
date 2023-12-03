@@ -23,6 +23,13 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
+        for i in range(5):
+            print(i)
+
+        contador = 0
+        for e in range(5):
+            contador += 1
+            print(contador,e)
         pass 
        
             

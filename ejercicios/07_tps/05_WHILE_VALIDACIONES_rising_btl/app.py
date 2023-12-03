@@ -50,6 +50,38 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
+        solicitar_apellido = prompt(title="titulo",prompt="ingrese un apellido :")
+
+        while True:
+            solicitar_edad = prompt(title="titulo",prompt="Ingrese su edad entre 18 y 90 años")
+            if solicitar_edad.isdigit():
+                edad = int(solicitar_edad)
+                if edad >= 18 or edad <= 90:
+                    break
+                else:
+                    alert(title="titulo",message="Error, ingreso una edad invalida")
+            
+        while True:
+            tipo_combo = prompt(title="titulo",prompt="Ingrese su estado civil")
+            tipo_combo = tipo_combo.lower().capitalize()
+            if tipo_combo in ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]:
+                break
+            else:
+                alert(title="titulo",message="Ingreso un estado civil incorrecto, seleccione uno como del desplegable")
+                
+
+        while True:
+            solicitar_legajo = prompt(title="Titulo",prompt="ingrese un legajo numerico de 4 cifras y sin ceros a la izquierda")
+            if solicitar_legajo.isdigit() and len(solicitar_legajo) == 4:
+                break
+            else:
+                alert(title="titulo",message="Ingrese un numero de legajo valido como se indica")
+        
+        self.txt_apellido.insert(0,solicitar_apellido)
+        self.txt_edad.insert(0,solicitar_edad)
+        self.combobox_tipo.set(tipo_combo)
+        self.txt_legajo.insert(0,solicitar_legajo)
+        
         pass
 
 

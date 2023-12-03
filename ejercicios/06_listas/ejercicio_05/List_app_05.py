@@ -24,6 +24,13 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
+        lista = self.lista_datos
+        suma = 0
+        for i in lista:
+            suma += i
+        sumarLista = sum(self.lista_datos)
+        alert(title="titulo",message=f"Suma con metodo sum() {sumarLista}")
+        print(suma) 
         pass
     
 if __name__ == "__main__":

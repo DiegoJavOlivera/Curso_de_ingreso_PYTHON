@@ -3,6 +3,7 @@ from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
+import math
 
 '''
 Enunciado:
@@ -32,6 +33,30 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
+        sumaAcumulada = 0
+        producto = 1
+        while True: 
+            solicitar = prompt(title="titulo",prompt="ingresar un numero, si es positivo suma, si es negativo se multiplica")
+            
+            if  solicitar is None:
+                alert(title="titulo" , message="el usuario presiono cancelar, se muestran los resultados.")
+                break            
+            
+            solicitar = int(solicitar)
+            if  solicitar < 0:
+                producto *= solicitar
+                alert(title="titulo",message=f"se ingreso {solicitar} un numeor negativo, se multiplica")
+            elif solicitar > 0: 
+                sumaAcumulada += solicitar
+                alert(title="titulo", message=f"se a ingresado un numero positivo {solicitar}, se suma")
+            elif solicitar == 0:
+                alert(title="titulo",message="el usuario a ingresado 0 , se cancela y se muestran los resultados")
+                break
+            
+        self.txt_suma_acumulada.insert(0,sumaAcumulada)
+        self.txt_producto.insert(0,producto)
+
+
         pass
 
     

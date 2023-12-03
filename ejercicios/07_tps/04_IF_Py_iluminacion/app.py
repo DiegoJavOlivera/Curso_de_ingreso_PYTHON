@@ -38,6 +38,47 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
+        cantidad = int(self.combobox_cantidad.get())
+        marca = self.combobox_marca.get()
+        lamparas_precio = 800
+        subtotal = 0
+        descuento_adicional = 0
+        total = 0
+        match (cantidad):
+            case 1 | 2:
+                descuento = 0
+            case 3:
+                match(marca):
+                    case "ArgentinaLuz":
+                        descuento = 0.15
+                    case "FelipeLamparas":
+                        descuento = 0.1
+                    case _:
+                        descuento = 0.05
+            case 4:
+                match (marca):
+                    case "ArgentinaLuz" | "FelipeLamparas":
+                        descuento = 0.25
+                    case _:
+                        descuento = 0.2
+            case 5:
+                match (marca):
+                    case "ArgentinaLuz":
+                        descuento = 0.4
+                    case _:
+                        descuento = 0.3
+            case _:
+                descuento = 0.5
+            
+
+
+        subtotal = (cantidad * lamparas_precio) * descuento
+        total = (cantidad * lamparas_precio) - subtotal
+        if total > 4000:
+            descuento_adicional = total * 0.05
+            
+        total -= descuento_adicional
+        print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}, por que supero los 4000 se le agrega un descuento adicional de {descuento_adicional}")
         pass
         
     
@@ -45,3 +86,64 @@ if __name__ == "__main__":
     app = App()
     app.geometry("300x300")
     app.mainloop()
+
+    '''
+        cantidad = int(self.combobox_cantidad.get())
+        marca = self.combobox_marca.get()
+        lamparas_precio = 800
+        subtotal = 0
+        descuento_adicional = 0
+        total = 0
+        if cantidad >= 6:
+            subtotal = (lamparas_precio * cantidad) *0.5
+            total =  (lamparas_precio * cantidad) - subtotal
+            print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+            if total > 4000:
+                    descuento_adicional = total * 0.05
+                    total = total + descuento_adicional
+                    print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}, por que supero los 4000 se le agrega un descuento adicional de {descuento_adicional}")
+        elif cantidad == 5:
+            if marca == "ArgentinaLuz":
+                subtotal = ( lamparas_precio * cantidad ) * 0.4
+                total = (lamparas_precio * cantidad) - subtotal 
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+                if total > 4000:
+                    descuento_adicional = total * 0.05
+                    total = total + descuento_adicional
+                    print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}, por que supero los 4000 se le agrega un descuento adicional de {descuento_adicional}")
+
+            elif marca:
+                subtotal = (lamparas_precio * cantidad) * 0.3
+                total = (lamparas_precio * cantidad) - subtotal
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+                if total > 4000:
+                    descuento_adicional = total * 0.05
+                    total = total + descuento_adicional
+                    print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}, por que supero los 4000 se le agrega un descuento adicional de {descuento_adicional}")
+        elif cantidad == 4 :
+            if marca == "ArgentinaLuz" or marca == "FelipeLamparas":
+                subtotal = (lamparas_precio * cantidad) *0.25
+                total = (lamparas_precio * cantidad) - subtotal
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+                
+            elif marca :
+                subtotal = (lamparas_precio * cantidad) * 0.2
+                total = (lamparas_precio * cantidad) - subtotal
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+                
+        elif cantidad == 3:
+            if marca == "ArgentinaLuz":
+                subtotal = (lamparas_precio * cantidad) *0.15
+                total = (lamparas_precio * cantidad) - subtotal
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+                
+            elif marca == "FelipeLamparas":
+                subtotal = (lamparas_precio * cantidad) *0.1
+                total = (lamparas_precio * cantidad) - subtotal
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}")
+                
+            elif marca:
+                subtotal = (lamparas_precio * cantidad) * 0.05
+                total = (lamparas_precio * cantidad) - subtotal
+                print(f"El total es de {total} por la cantidad de {cantidad} lamparitas {marca} con un descuento de {subtotal}, por que supero los 4000 se le agrega un descuento adicional de {descuento_adicional}")
+                '''

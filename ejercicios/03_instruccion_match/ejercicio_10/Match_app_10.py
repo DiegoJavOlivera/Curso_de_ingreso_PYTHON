@@ -42,6 +42,32 @@ class App(customtkinter.CTk):
         
     
     def btn_informar_on_click(self):
+        estacion = self.combobox_estaciones.get()
+        destiny = self.combobox_destino.get()
+        
+        match estacion:
+            case "Invierno":
+                match destiny:
+                    case "Bariloche":
+                        alert(title="titulo",message="Se viaja")
+                    case _:
+                        alert(title="titulo",message="Solo se viaja a Bariloche")
+            case "Verano":
+                match destiny:
+                    case "Mar del plata"|"Cataratas":
+                        alert(title="titulo",message="Se viaja")
+                    case _:
+                        alert(title="titulo",message="Solo se viaja a Mar del plata o Cataratas")
+            case "Otoño":
+                match destiny:
+                    case _:
+                        alert(title="titulo",message="Se viaja a todos los lugares")
+            case "Primavera":
+                match destiny:
+                    case "Bariloche":
+                        alert(title="titulo",message="No se realiza viajes a Bariloches")
+                    case _:
+                        alert(title="titulo",message="Se viaja a todos lados menos a Bariloche")
         pass
             
     
