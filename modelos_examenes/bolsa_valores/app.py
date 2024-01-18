@@ -146,55 +146,37 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_informe_1(self):
-        lista_nombre = []
-        for indice, valor in enumerate(self.lista_nombre):
-            lista_nombre.append((indice,valor))
-        print("Lista de posicion y nombre: ",lista_nombre)
-
-        lista_monto = []
-        for indice, valor in enumerate(self.lista_monto):
-            lista_monto.append((indice,valor))
-        print("Lista de posicion y monto: ",lista_monto)
-        
-        lista_tipo_instrumento = []
-        for indice,valor in enumerate(self.lista_tipo_instrumento):
-            lista_tipo_instrumento.append((indice,valor))
-        print("Lista de posicion y tipo de instrumento: ",lista_tipo_instrumento)
-
-        lista_cantidad_instrumento = []
-        for indice, valor in enumerate(self.lista_cantidad_instrumento):
-            lista_cantidad_instrumento.append((indice,valor))
-        print("Lista de posicion y cantidad de instrumento: ",lista_cantidad_instrumento)      
+        lista_informe1 = []
+        lista_informe = list(zip(self.lista_nombre,self.lista_monto,self.lista_tipo_instrumento,self.lista_cantidad_instrumento))
+        for i, (nombrelist,montolist,tipoInst,cantidadInst) in enumerate(lista_informe):
+            lista_informe.append()
         pass
         
 
 
     def btn_mostrar_informe_2(self):
-        ingresar_ultimo_dni = prompt(title="titulo",prompt="Ingrese su ultimo numero de DNI")
-        ingresar_ultimo_dni = int(ingresar_ultimo_dni)
-        return ingresar_ultimo_dni
+        self.function_a_llamar(1)
         pass
         
 
 
     def btn_mostrar_informe_3(self):
-        ingresar_ultimo_dni = prompt(title="titulo", prompt="Ingrese su ultimo numero de DNI")
-        ingresar_ultimo_dni = int(ingresar_ultimo_dni)
-        if ingresar_ultimo_dni == 0:
-            return 9
-        else:
-            ingresar_ultimo_dni = 9 - ingresar_ultimo_dni 
-            return ingresar_ultimo_dni
+        self.function_a_llamar(2)
         pass      
-    def informar_dosOuno(self):
-        resultado_informe3 = self.btn_mostrar_informe_3()
-        if resultado_informe3:
-            return resultado_informe3
-        else:
-            return self.btn_mostrar_informe_2()
+    
 
     def btn_mostrar_todos_on_click(self):
-        dni_ultimo = self.informar_dosOuno()
+        self.function_a_llamar()
+        
+            
+        pass
+    
+    def function_a_llamar(self,condicion):
+        dni_ultimo = prompt(title="titulo", prompt="Ingrese su ultimo numero de DNI")
+        dni_ultimo = int(dni_ultimo)
+        if condicion == 2:
+            dni_ultimo -= 9
+     
         match dni_ultimo:
             case 0: 
                 tipo_instrumento_menos_operado = min(self.lista_tipo_instrumento, key=self.lista_tipo_instrumento.count)
@@ -265,6 +247,8 @@ class App(customtkinter.CTk):
                 promedio_monto_mep = monto_mep / contador_mep
                 print(f"El promedio de la cantidad de instrumentos MEP vendios es: {promedio_monto_mep}, cantidad total vendida: {monto_mep}")
         pass
+        pass
+
 
         
 
