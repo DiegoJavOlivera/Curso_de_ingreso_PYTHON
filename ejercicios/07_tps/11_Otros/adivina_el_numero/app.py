@@ -32,11 +32,21 @@ class App(customtkinter.CTk):
         self.btn_mostrar = customtkinter.CTkButton(master=self, text="Mostrar", command=self.btn_mostrar_on_click)
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
-        self.numero_secreto = random.randint(1, 100)
+       
         self.numero_intento = 0
-
+        self.numeroRandom = random.randint(1,100)
 
     def btn_mostrar_on_click(self):
+        ingresarNumero = int(self.txt_numero.get())
+        numeroRam = self.numeroRandom
+        if ingresarNumero == numeroRam:
+            alert(title="titulo" , message=f"Felicidades!! El numero ingresado es {ingresarNumero} y el numero misterioso elegido es {self.numeroRandom}, correcto")
+        self.numero_intento += 1
+        if ingresarNumero < numeroRam:
+            alert(title="titulnumeroRam = self.numeroRandomo",message=f"Ingresaste un numero mas bajo que el numero misterioso, intenta nuevamente\n intentos: {self.numero_intento}")
+        elif ingresarNumero > numeroRam:
+            alert(title="titulonumeroRam = self.numeroRandom", message=f"Ingresaste un numero mas grande que el numero misterioso, intenta nuevamente \n intentos: {self.numero_intento}")
+        
         pass
 
 

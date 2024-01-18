@@ -39,12 +39,32 @@ class App(customtkinter.CTk):
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
         self.numero_secreto = random.randint(1, 100)
-        self.numero_intento = 0
+        self.numero_intento = 1
+        
         print(f'La maquina eligio el numero {self.numero_secreto}')
 
 
 
     def btn_mostrar_on_click(self):
+        ingresarNumero = int(self.txt_numero.get())
+        numeroRamdon = self.numero_secreto
+        if ingresarNumero < numeroRamdon:
+            self.numero_intento += 1
+            alert(title="titulo", message="Ingreso un numero mas bajo que el numero magico, Intentalo nuevamente")
+        elif ingresarNumero > numeroRamdon:
+            self.numero_intento += 1 
+            alert(title="titulo",message="Ingreso un numero mas alto que el numero magico, Intentalo nuevamente")
+        else:
+            if ingresarNumero == numeroRamdon and self.numero_intento == 1:
+                alert(title="titulo", message=f"Felicitaciones! dio con el numero es: {ingresarNumero} y en {self.numero_intento} intentos, usted es psiquico!")
+            elif ingresarNumero == numeroRamdon and self.numero_intento == 2: 
+                alert(title="titulo", message=f"Felicitaciones! dio con el numero es: {ingresarNumero} y en {self.numero_intento} intentos, Excelente percepcion!")
+            elif ingresarNumero == numeroRamdon and self.numero_intento == 3: 
+                alert(title="titulo", message=f"Felicitaciones! dio con el numero es: {ingresarNumero} y en {self.numero_intento} intentos, Esto es suerte")
+            elif ingresarNumero == numeroRamdon and self.numero_intento >= 4 and self.numero_intento <= 6:
+                alert(title="titulo", message=f"Felicitaciones! dio con el numero es: {ingresarNumero} y en {self.numero_intento} intentos, Excelente tecnica!")
+            elif ingresarNumero == numeroRamdon and self.numero_intento > 6: 
+                alert(title="titulo",message=f"Felicitaciones! dio con el numero es: {ingresarNumero} y en {self.numero_intento} intentos, Afortunado en el amor!!")
         pass
 
 

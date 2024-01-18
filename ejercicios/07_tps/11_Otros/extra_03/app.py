@@ -59,28 +59,63 @@ class App(customtkinter.CTk):
 
         self.title("UTN FRA")
 
+        self.txt_label = customtkinter.CTkLabel(master=self, text="Peso estimado 61.84")
+        self.txt_label.grid(row=0, padx= 0, pady= 0)
+
         self.txt_peso_articulo = customtkinter.CTkEntry(master=self, placeholder_text="Peso Alfajor")
-        self.txt_peso_articulo.grid(row=1, padx=20, pady=20)
+        self.txt_peso_articulo.grid(row=1, padx=0, pady=0)
 
         self.btn_aceptar = customtkinter.CTkButton(master=self, text="ACEPTAR", command=self.btn_aceptar_on_click)
         self.btn_aceptar.grid(row=2, pady=10, columnspan=2, sticky="news")
 
-        self.btn_aceptar = customtkinter.CTkButton(master=self, text="RECHAZAR", command=self.btn_aceptar_on_click)
-        self.btn_aceptar.grid(row=3, pady=10, columnspan=2, sticky="news")
+        self.btn_rechazar = customtkinter.CTkButton(master=self, text="RECHAZAR", command=self.btn_rechazar_on_click)
+        self.btn_rechazar.grid(row=3, pady=10, columnspan=2, sticky="news")
 
         self.btn_generar_informe_notas = customtkinter.CTkButton(master=self, text="Generar Informe de Notas", command=self.btn_generar_informe_on_click)
         self.btn_generar_informe_notas.grid(row=5, pady=20, columnspan=2, sticky="news")
         
         self.lista_pesos_rechazados = []
         self.lista_pesos_aceptados = []
-            
+        self.ingredientes = {"harina 000":20, "almidon de maiz":5, "manteca":10, "azucar":10, "cacao amargo":0.75, "polvo para hornear": 0.5, "miel":1, "extracto de vainilla":0.25, "huevo":0.25, "dulce de leche":25}
     def btn_aceptar_on_click(self):
+        peso = self.txt_peso_articulo.get()
+        if any(valor.isalpha() for valor in peso):
+            alert(title="titulo", message="El usuario a ingresado texto, solo debe ingresar numero")
+        else:
+            peso = float(peso)
+            self.lista_pesos_aceptados.append(peso)
+            alert(title="titulo",message="El usuario ingreso el peso del alfajor y fue ingresado a aceptados")
         pass
     
     def btn_rechazar_on_click(self):
+        peso = self.txt_peso_articulo.get()
+        if any(valor.isalpha() for valor in peso):
+            alert(title="titulo", message="El usuario a ingresado texto, solo debe ingresar numero")
+        else:
+            peso = float(peso)
+            self.lista_pesos_rechazados.append(peso)
+            alert(title="titulo",message="El usuario ingreso el peso del alfajor y fue ingresado a rechazados")
         pass
 
     def btn_generar_informe_on_click(self):
+        
+        cantidadAlfaTotal = len(self.lista_pesos_aceptados) + len(self.lista_pesos_rechazados)
+        cantidadTotalAceptado = len(self.lista_pesos_aceptados)
+        cantidadTotalRechazados = len(self.lista_pesos_rechazados)
+        sumaTotalIngredientes = sum(self.ingredientes.values()) - (sum(self.ingredientes.values()) * 0.15)
+        promedioAceptados = sum(self.lista_pesos_aceptados) / len(self.lista_pesos_aceptados)
+        promedioRechazados = sum(self.lista_pesos_rechazados) / len(self.lista_pesos_rechazados)
+        materiaTotalUtilizada = {}
+        for clave, valor in self.ingredientes.items():
+            materiaTotalUtilizada[clave] = valor * (len(self.lista_pesos_aceptados) + len(self.lista_pesos_rechazados))
+        materiaTotalDesperdiciada = {}
+        for clave, valor in self.ingredientes.items():
+            materiaTotalDesperdiciada[clave] = valor * len(self.lista_pesos_rechazados)
+
+        alert(title="titulo", message=f"Los aljares aceptados tienen un peso total de: {round(sumaTotalIngredientes,2)} descontando la merma del %15 \n\nSe fabricaron un total de: {cantidadAlfaTotal} alfajores\n\nSe aceptaron una cantidad de: {cantidadTotalAceptado} alfajores\n\nSe rechazaron una cantidad de: {cantidadTotalRechazados} alfajores\n\nEl promedio del peso de los alfajores aceptado es de: {round(promedioAceptados,2)}\n\nEl promedio del peso de los alfajores rechazados es de: {round(promedioRechazados)}\n\nEl total de la materia prima utilizada en gramos es de: {materiaTotalUtilizada}\n\nEl total de la materia prima desperdiciada en gramos es de: {materiaTotalDesperdiciada}")
+        
+
+
         pass
 
 

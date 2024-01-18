@@ -59,15 +59,43 @@ class App(customtkinter.CTk):
         
         self.btn_generar_informe_notas = customtkinter.CTkButton(master=self, text="Generar Informe de Notas", command=self.btn_generar_informe_notas_on_click)
         self.btn_generar_informe_notas.grid(row=5, pady=20, columnspan=2, sticky="news")
-        
+        self.lista_notas = []
             
     def btn_ingresar_notas_on_click(self):
+        while True:
+            solicitarNota = prompt(title="titulo", prompt="Ingrese las notas del 1 al 10")
+            if solicitarNota is None:
+                alert(title="titulo", message="El usuario cancelo el ingreso de notas")
+                break
+            elif solicitarNota.isalpha():
+                alert(title="titulo", message="El usuario a ingresado un texto, intente nuevamente")
+        
+            if solicitarNota.isdigit() and int(solicitarNota) >= 1 and int(solicitarNota) <= 10:
+                self.lista_notas.append(solicitarNota)
+                alert(title="titulo", message="El usuario ingreso una nota a la lista")
+            else:
+                if any(notas.isalpha() for notas in solicitarNota):
+                    alert(title="titulo",message="El usuario ingreso Numero con texto, vuelva a intentarlo")    
         pass
     
     def btn_generar_informe_notas_on_click(self):
+        for indice, valor in enumerate(self.lista_notas):
+            print(indice," - nota:", valor)
         pass
         
     def btn_mostrar_notas_on_click(self):
+        notaMasBaja = min(self.lista_notas)
+        notaMasAlta = max(self.lista_notas)
+        promedioNotas = sum(self.lista_notas) / len(self.lista_notas)
+        cantidadNotaAlta = sum(1 for nota in self.lista_notas if nota == 10 )
+        alert(title="titulo",message=f"La nota mas bajas es: {notaMasBaja}\nLa nota mas alta es: {notaMasAlta}\nEl promedio de todas las notas es: {promedioNotas}")
+        match promedioNotas:
+            case 1|2|3:
+                alert(title="titulo",message=f"El promedio desaprobo con un {promedioNotas}")
+            case 4|5|6:
+                alert(title="titulo",message=f"El promedio aprobo con un {promedioNotas}")
+            case 7|8|9|10:
+                alert(title="titulo",message=f"El promedio promociono con {promedioNotas}")
         pass
 
 if __name__ == "__main__":

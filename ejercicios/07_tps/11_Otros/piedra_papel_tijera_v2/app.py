@@ -34,11 +34,12 @@ class App(customtkinter.CTk):
         self.btn_restart = customtkinter.CTkButton(master=self, text="RESTART", command=self.btn_restart_on_click, fg_color="red")
         self.btn_restart.grid(row=5, pady=20, columnspan=2, sticky="nsew")
         
-        self.cpu_elije()
-        print(self.seleccion_cpu)
+        
+        
         
         self.contador_vitorias_cpu = 0 
         self.contador_vitorias_player_1 = 0 
+        self.contador_empates = 0
 
 
 
@@ -52,20 +53,65 @@ class App(customtkinter.CTk):
         self.btn_papel.configure(state="normal")
         self.btn_tijera.configure(state="normal")
         self.cpu_elije()
-        print(self.seleccion_cpu)
+        print(self.cpu_elije)
+        print("Empates: ",self.contador_empates,"\n","Victoria CPU: ",self.contador_vitorias_cpu,"\n","Victoria Player: ",self.contador_vitorias_player_1 )
 
     def cpu_elije(self):
+        eleccion_cpu = random.randint(1,3)
+        match eleccion_cpu:
+            case 1:
+                
+                return eleccion_cpu
+            case 2:
+                
+                return eleccion_cpu
+            case 3:
+                
+                return eleccion_cpu
         pass
 
     def btn_piedra_on_click(self):
+        cpu_eleccion = self.cpu_elije()
+        match cpu_eleccion:
+            case 1:
+                print("Cpu elige Piedra, Elegiste Piedra, Empate!, vuelve a intentarlo")
+                self.contador_empates += 1
+            case 2:
+                print("Cpu elige Papel, Elegiste Piedra, Perdite!, Papel emvuelve Piedra")
+                self.contador_vitorias_cpu += 1
+            case 3:
+                print("Cpu elige Tijera, Elegiste Piedra, Ganaste!, Piedra gana a tijera")
+                self.contador_vitorias_player_1 += 1
         self.deshabilitar_botones()
         pass
 
     def btn_papel_on_click(self):
+        cpu_eleccion = self.cpu_elije()
+        match cpu_eleccion:
+            case 1:
+                print("Cpu elige Piedra, Elegiste Papel, Ganaste!, Papel emvuelve Piedra")
+                self.contador_vitorias_player_1 += 1
+            case 2:
+                print("Cpu elige Papel, Elegiste Papel, Empate!, Vuelve a intentarlo")
+                self.contador_empates += 1
+            case 3:
+                print("Cpu elige Tijera, Elegiste Papel, Perdiste!, Tijera corta Papel")
+                self.contador_vitorias_cpu += 1
         self.deshabilitar_botones()
         pass
 
     def btn_tijera_on_click(self):
+        cpu_eleccion = self.cpu_elije()
+        match cpu_eleccion:
+            case 1:
+                print("Cpu elige Piedra, Elegiste Tijera, Perdiste!, Piedra gana a Tijera")
+                self.contador_vitorias_cpu += 1
+            case 2:
+                print("Cpu elige Papel, Elegiste Tijera, Ganaste!, Tijera corta Papel")
+                self.contador_vitorias_player_1 += 1
+            case 3:
+                print("Cpu elige Tijera, Elegiste Tijera, Empate!, Vuelve a intentarlo")
+                self.contador_empates += 1
         self.deshabilitar_botones()
         pass
 

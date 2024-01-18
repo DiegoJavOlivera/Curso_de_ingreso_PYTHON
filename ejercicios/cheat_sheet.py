@@ -11,7 +11,7 @@ obtener datos get() = con get podemos obtener el valor ingresado de una caja de 
 
 delete() = podemos borrar el contenido usando self.txt_resultado.delete(0,100) si o si 0 hasta donde querramos borrar
 
-insert() = podemos insertar valores nuevos con self.txt_resultado.insert(0, valor_resultado)
+insert() = podemos insertar valores nuevos con self.txt_resultado.insert(0, valor_resultado) RECORDA AGREGAR POSICION DE DONDE SE INSERTA COMO (posicion,lo que se inserta)
 
 int() = es para pasar de string a valor entero
 
@@ -57,6 +57,34 @@ set() se utiliza en tkinter para establecer el valor seleccionado en un widget d
 .count() se utiliza para contar cuantas veces un elemento especifico aparece ene esa secuencia, toma como argumento lo que deseas contar y devuelve el numero de veces que ese elemento esta presente en la secuencia 
 
  key=candidatos.get con la función max() para encontrar la clave (en este caso, el nombre del candidato) que tenga el valor máximo asociado en el diccionario candidatos. La función candidatos.get se usa como función de clave, lo que significa que para cada elemento (en este caso, cada nombre de candidato) max() llamará a candidatos.get(nombre) para obtener su valor correspondiente en el diccionario candidatos y luego encontrará el nombre que tenga el valor máximo asociado a él.
+
+ strip() se utiliza para eliminar los espacions en blanco en las cadenas de texto incluye tabulaciones y saltos de linea al inicio y al final de la cadena 
+
+ 
+ .values() se utiliza para obtener una vista de los valores almacenados en el diccionario, retorna un objeto iterable que contiene los valores asociados a las claves en el diccionario, osea una lista con los valores de los diccionarios
+
+Counter() hay que importarla de esta manera From collections import Counter y se utiliza para contar elementos dentro de una lista tupla o lo que sea iterable, crea un diccionario donde las claves son los elementos iterables y los valores son las frecuencias de eesos elementos 
+
+most_common() es un metodo de la clase Counter para obtener los elementos mas comunes dentro del contador devolviendolos como una lista de tuplas ordenadas por frecuencia , puedes ponerle como argunmento 1 o2 segun la cantidad de elementos que quieras obtener .
+
+puedes acceder a las tuplas utilizando [0] [1] el primero para acceder a la posicion de la lista que seria la primera tupla, y el segundo para acceder al valor, si seria [0] estariamos accediendo a la clave 
+
+Float('inf') representa infinito positivo en python para valores de tipo flotante( numeros decimales) , representa a un numero mayor que cualquier otro
+
+isalpha() es un metodoque se utiliza para comprobar si todos los caracteres de una cadena son alfabeticos es decir si son letras, este devuelve true sin son todas letras, caso contrario false 
+
+isupper() se utiliza para verificar que la cadena de texto aplicada sean todas mayusculas 
+
+
+enumerate() esta funcion te permite iterar sobre la lista y obtener tanto el valor como su indice en cada iteracion, un ejemplo en for indice,valor in enumerate(mi lista):  devuelve una tupla con clave o indice y valor 
+
+zip() se utiliza para unir dos listas en pares de elementos , donde la primera sera la clave y el valor la segunda, los devuelve unidas por indices , una lista con tuplas y se accede como most_common()
+
+list() puede meter tuplas en una lista en el contesto de zip
+
+items() devuelve tuplas que contienen los pares clave y valor de cada diccionario, en el ciclo for
+
+.pop() elimina el ultimo elemento agregado y lo guarda en la variable declarada
 
 '''
 

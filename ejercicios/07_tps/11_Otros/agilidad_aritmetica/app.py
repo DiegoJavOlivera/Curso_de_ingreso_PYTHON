@@ -51,23 +51,47 @@ class App(customtkinter.CTk):
 
         self.btn_jugar = customtkinter.CTkButton(master=self, text="JUGAR", command=self.btn_jugar_on_click, fg_color="green")
         self.btn_jugar.grid(row=6, pady=30, columnspan=2, rowspan=2,sticky="nsew")
-
-
+        self.numeroRandomA = random.randint(1,10)
+        self.numeroRandomB = random.randint(1,10)
+        self.numeroRandomC = random.randint(1,3)
+        self.txt_operador_a.insert(0,self.numeroRandomA)
+        self.txt_operador_b.insert(0,self.numeroRandomB)
     def deshabilitar_botones(self):
         self.btn_sumar.configure(state="disabled")
         self.btn_restar.configure(state="disabled")
         self.btn_multiplicar.configure(state="disabled")
 
     def btn_sumar_on_click(self):
+        sumar = self.numeroRandomA + self.numeroRandomB
+        if int(self.txt_respuesta.get().isdigit()) == sumar:
+            alert(title="titulo",message=f"Felicitaciones el resultado concuerda con la respuesta que ingresaste era una suma, lo lograste es {sumar}")
+        else:
+            alert(title="titulo",message=f"intentalo nuevamente era una suma, ingresaste: {self.txt_respuesta.get()} y es {sumar}")
         pass
 
     def btn_restar_on_click(self):
+        resta = self.numeroRandomA - self.numeroRandomB
+        if int(self.txt_respuesta.get().isdigit()) == resta:
+            alert(title="titulo",message=f"Felicitaciones el resultado concuerda con la respuesta que ingresaste era una resta, lo lograste es {resta}")
+        else:
+            alert(title="titulo",message=f"intentalo nuevamente era una resta, ingresaste: {self.txt_respuesta.get()} y es {resta}")
         pass
         
     def btn_multiplicar_on_click(self):
+        multi = self.numeroRandomA * self.numeroRandomB
+        if int(self.txt_respuesta.get().isdigit()) == multi:
+            alert(title="titulo",message=f"Felicitaciones el resultado concuerda con la respuesta que ingresaste era una multiplicacion, lo lograste es {multi}")
+        else:
+            alert(title="titulo",message=f"intentalo nuevamente era una multiplicacion, ingresaste: {self.txt_respuesta.get()} y es {multi}")
         pass
         
     def btn_jugar_on_click(self):
+        if self.numeroRandomC == 1:
+            self.btn_multiplicar_on_click()
+        elif self.numeroRandomC == 2:
+            self.btn_restar_on_click()
+        elif self.numeroRandomC == 3:
+            self.btn_sumar_on_click()
         self.deshabilitar_botones()
         pass
 
