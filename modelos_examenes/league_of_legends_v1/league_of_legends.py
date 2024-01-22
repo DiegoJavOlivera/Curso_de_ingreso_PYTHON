@@ -114,22 +114,113 @@ class App(customtkinter.CTk):
 
 
     def btn_cargar_campeones_on_click(self):
+        contador = 0
+        while contador > 10:
+            while True:
+                modo_juego = prompt(title="titulo", prompt="Ingresar el modo de juego: Normal. Clasificatoria, Aram").capitalize()
+                if any(texto.isnumeric() for texto in modo_juego):
+                    print("Se ingreso un numero, debe ser texto. Intentelo nuevamente")
+                elif modo_juego is None:
+                    print("El usuario toco cancelar, no ingreso nada")
+                elif modo_juego == "Normal" or modo_juego == "Clasificatoria" or modo_juego == "Aram":
+                    self.lista_modo_de_juego.append(modo_juego)
+                    print("El usuario ingreso un modo de juego a la lista")
+                    break
+            while True:
+                nombre_personaje = prompt(title="titulo", prompt="Ingrese el nombre del personaje que uso: Jinx, Akali, Ashe, Vladimir, Kalista,Teemo, Annie, Zed, Katarina, Hecarim")
+                if any(texto.isnumeric() for texto in nombre_personaje):
+                    print("Se ingreso numero, debe ser texto, intentelo nuevamente")
+                elif nombre_personaje is None:
+                    print("El usuario toco cancelar, no ingreso nada")
+                elif nombre_personaje in self.lista_nombre_campeones:
+                    self.lista_nombre_campeones.append(nombre_personaje)
+                    print("Se ingreso un personaje")
+                    break
+            while True:
+                cantidad_kill = prompt(title="titulo", prompt="Ingresar la cantidad de asesinatos a favor")
+                if any(numero.isalpha() for numero in cantidad_kill):
+                    print("El usuario ingreso texto, debe ingresar un numero, intentelo nuevamente")
+                elif cantidad_kill is None:
+                    print("El usuario ingreso cancelar")
+                elif cantidad_kill.isdigit():
+                    self.lista_asesinatos_a_favor.append(int(cantidad_kill))
+                    print("El usuario ingreso una cantidad de kill a favor")
+                    break
+            while True:
+                cantidad_kill_contra = prompt(title="titulo", prompt="Ingresar la cantidad de muertes en contra")
+                if any(numero.isalpha() for numero in cantidad_kill_contra):
+                    print("Se ingreso texto, debe ser un numero, Intentarlo nuevamente")
+                elif cantidad_kill_contra is None:
+                    print("El usuario cancelo, intentelo nuevamente")
+                elif cantidad_kill_contra.isdigit():
+                    self.lista_muertes_en_contra.append(int(cantidad_kill_contra))
+                    print("Se ingreso una cantidad de kill en contra ")
+                    break
+            while True:
+                cantidad_kill_asist = prompt(title="titulo", prompt="Ingrese cantidad asistencias a favor")
+                if any(numero.isalpha() for numero in cantidad_kill_asist):
+                    print("El usuario ingreso un texto, debe ser numero, intentelo nuevamente")
+                elif cantidad_kill_asist is None:
+                    print("El usuario cancelo, intentelo nuevamente")
+                elif cantidad_kill_asist.isdigit():
+                    self.lista_asistencias_a_favor.append(int(cantidad_kill_asist))
+                    print("Ingreso cantidad de asistencias a favor")
+                    break
+            contador += 1                
         pass
         
 
     def btn_mostrar_informe_1_on_click(self):
+        lista_informe1 = []
+        for i, nombre in enumerate(self.lista_nombre_campeones):
+            lista_informe1.append((i,nombre))
+        for itera in lista_informe1:
+            print(f"La siguiente lista muestra la posicion y el nombre de los campeones ingresados: {itera}")
+        self.pedir_dni(False)
         pass
 
     
     def btn_mostrar_informe_2_on_click(self):
+        self.pedir_dni(True)
         pass
 
     
     def btn_mostrar_todos_informes_on_click(self):
         self.btn_mostrar_informe_1_on_click()
-        self.btn_mostrar_informe_2_on_click()
+        self.pedir_dni(False)
+        self.pedir_dni(True)
 
-    
+    def funcion_llamar(self,n,dni):
+        dni_solicitado = dni
+        if n:
+            dni_solicitado = 9 - dni_solicitado
+        
+        match dni_solicitado: 
+            case 2:
+                nombre_personaje_mas_kill = None
+                cantidad = 0
+                lista_personaje_mas_kill = list(zip(self.lista_nombre_campeones,self.lista_asesinatos_a_favor))
+                for nombre, cantidad_muerte in lista_personaje_mas_kill:
+                    if cantidad_muerte > cantidad:
+                        cantidad = cantidad_muerte
+                        nombre_personaje_mas_kill = nombre
+                print(f"El personaje con mas kill es {nombre_personaje_mas_kill} con : { cantidad} asesinatos")
+
+            case 7:
+                lista_partida_enContra_nombre = list(zip(self.lista_muertes_en_contra,self.lista_nombre_campeones,self.lista_modo_de_juego))
+                cantidad_muertes = 0
+                for muertes, nombre_campeones,modo in lista_partida_enContra_nombre:
+                    if muertes > cantidad_muertes:
+                        cantidad_muertes = muertes
+                        nombre_delCampeon = nombre_campeones
+                        modo_juego = modo
+                print(f"En la partida con mas muertes en contra  fue de: {cantidad_muertes} usando al campeon {nombre_delCampeon} y en modo {modo_juego}")
+
+    def pedir_dni(self,condicion):
+        solicitar_dni = prompt(title="titulo",prompt="Ingrese su ultimo numero de DNI")
+        solicitar_dni = int(solicitar_dni)
+        self.funcion_llamar(condicion,solicitar_dni)
+
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     app = App()

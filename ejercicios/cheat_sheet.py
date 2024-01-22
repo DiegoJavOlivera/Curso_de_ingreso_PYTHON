@@ -86,6 +86,9 @@ items() devuelve tuplas que contienen los pares clave y valor de cada diccionari
 
 .pop() elimina el ultimo elemento agregado y lo guarda en la variable declarada
 
+round(variable, y cantidad de decimales)
+
+
 '''
 
 

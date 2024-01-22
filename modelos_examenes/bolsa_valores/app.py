@@ -149,35 +149,36 @@ class App(customtkinter.CTk):
         lista_informe1 = []
         lista_informe = list(zip(self.lista_nombre,self.lista_monto,self.lista_tipo_instrumento,self.lista_cantidad_instrumento))
         for i, (nombrelist,montolist,tipoInst,cantidadInst) in enumerate(lista_informe):
-            lista_informe.append()
+            lista_informe1.append((i,nombrelist,montolist,tipoInst,cantidadInst))
+        for itera in lista_informe1:
+            print(f"Se presenta la lista de posicion, nombre, monto invertido, tipo de instrumento y cantidad de instrumento {itera}")
         pass
         
 
 
     def btn_mostrar_informe_2(self):
-        self.function_a_llamar(1)
+        self.preguntar_dni(False)
         pass
         
 
 
     def btn_mostrar_informe_3(self):
-        self.function_a_llamar(2)
+        self.preguntar_dni(True)
         pass      
     
 
     def btn_mostrar_todos_on_click(self):
-        self.function_a_llamar()
+        self.llamar_todos()
         
             
         pass
     
-    def function_a_llamar(self,condicion):
-        dni_ultimo = prompt(title="titulo", prompt="Ingrese su ultimo numero de DNI")
-        dni_ultimo = int(dni_ultimo)
-        if condicion == 2:
-            dni_ultimo -= 9
-     
-        match dni_ultimo:
+    def function_a_llamar(self,n, dni):
+        opcion = dni
+        if n:
+            opcion = 9 - opcion
+
+        match opcion:
             case 0: 
                 tipo_instrumento_menos_operado = min(self.lista_tipo_instrumento, key=self.lista_tipo_instrumento.count)
                 print(f"El instrumento que menos se opero es {tipo_instrumento_menos_operado}")
@@ -214,9 +215,10 @@ class App(customtkinter.CTk):
                 for i, (nombre, monto_dinero) in enumerate(list_nomb_menos_dinero):
                     if monto_dinero < monto_inf:
                         nombre_menor_dinero = nombre
-                        menor_dinero = monto
+                        monto_dinero_ = monto_dinero
                         posicion_menos_dinero = i
-                print(f"El nombre y la posicion de la persona que invirtio menos dinero es: {nombre_menor_dinero} Posicion: {posicion_menos_dinero}, Cantidad de dinero: {menor_dinero}")
+                        monto_inf = monto_dinero
+                print(f"El nombre y la posicion de la persona que invirtio menos dinero es: {nombre_menor_dinero} Posicion: {posicion_menos_dinero}, Cantidad de dinero: {monto_dinero_}")
             case 7:
                 list_nomb_mas_instr = list(zip(self.lista_nombre,self.lista_cantidad_instrumento))
                 monto_inf_inst = 0
@@ -235,7 +237,7 @@ class App(customtkinter.CTk):
                         monto_cedear += monto
                         contador += 1
                 promedio_cedear = monto_cedear / contador
-                print(f"El promedio de dinero ingresado en CEDEAR es de: {promedio_cedear}, cantidad total de dinero ingresado en CEDEAR: {monto_cedear}") 
+                print(f"El promedio de dinero ingresado en CEDEAR es de: {round(promedio_cedear,2)}, cantidad total de dinero ingresado en CEDEAR: {monto_cedear}") 
             case 9:
                 monto_mep = 0
                 contador_mep = 0
@@ -247,9 +249,14 @@ class App(customtkinter.CTk):
                 promedio_monto_mep = monto_mep / contador_mep
                 print(f"El promedio de la cantidad de instrumentos MEP vendios es: {promedio_monto_mep}, cantidad total vendida: {monto_mep}")
         pass
-        pass
-
-
+    def preguntar_dni(self, n):
+        dni_ultimo = prompt(title="titulo", prompt="Ingrese su ultimo numero de DNI")
+        dni_ultimo = int(dni_ultimo)
+        self.function_a_llamar(n,dni_ultimo)
+    
+    def llamar_todos(self):
+        for i in range(9):
+            self.function_a_llamar(False,i)
         
 
 if __name__ == "__main__":
