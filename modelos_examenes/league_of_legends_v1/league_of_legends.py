@@ -176,50 +176,41 @@ class App(customtkinter.CTk):
             lista_informe1.append((i,nombre))
         for itera in lista_informe1:
             print(f"La siguiente lista muestra la posicion y el nombre de los campeones ingresados: {itera}")
-        self.pedir_dni(False)
+        self.funcion_llamar(False)
         pass
 
     
     def btn_mostrar_informe_2_on_click(self):
-        self.pedir_dni(True)
+        self.funcion_llamar(True)
         pass
 
     
     def btn_mostrar_todos_informes_on_click(self):
         self.btn_mostrar_informe_1_on_click()
-        self.pedir_dni(False)
-        self.pedir_dni(True)
+        self.funcion_llamar(False)
+        self.funcion_llamar(True)
 
-    def funcion_llamar(self,n,dni):
-        dni_solicitado = dni
+    def funcion_llamar(self,n):
         if n:
-            dni_solicitado = 9 - dni_solicitado
-        
-        match dni_solicitado: 
-            case 2:
-                nombre_personaje_mas_kill = None
-                cantidad = 0
-                lista_personaje_mas_kill = list(zip(self.lista_nombre_campeones,self.lista_asesinatos_a_favor))
-                for nombre, cantidad_muerte in lista_personaje_mas_kill:
-                    if cantidad_muerte > cantidad:
-                        cantidad = cantidad_muerte
-                        nombre_personaje_mas_kill = nombre
-                print(f"El personaje con mas kill es {nombre_personaje_mas_kill} con : { cantidad} asesinatos")
+            nombre_personaje_mas_kill = None
+            cantidad = 0
+            lista_personaje_mas_kill = list(zip(self.lista_nombre_campeones,self.lista_asesinatos_a_favor))
+            for nombre, cantidad_muerte in lista_personaje_mas_kill:
+                if cantidad_muerte > cantidad:
+                    cantidad = cantidad_muerte
+                    nombre_personaje_mas_kill = nombre
+            print(f"El personaje con mas kill es {nombre_personaje_mas_kill} con : { cantidad} asesinatos")
+        else:
+            lista_partida_enContra_nombre = list(zip(self.lista_muertes_en_contra,self.lista_nombre_campeones,self.lista_modo_de_juego))
+            cantidad_muertes = 0
+            for muertes, nombre_campeones,modo in lista_partida_enContra_nombre:
+                if muertes > cantidad_muertes:
+                    cantidad_muertes = muertes
+                    nombre_delCampeon = nombre_campeones
+                    modo_juego = modo
+            print(f"En la partida con mas muertes en contra  fue de: {cantidad_muertes} usando al campeon {nombre_delCampeon} y en modo {modo_juego}")
 
-            case 7:
-                lista_partida_enContra_nombre = list(zip(self.lista_muertes_en_contra,self.lista_nombre_campeones,self.lista_modo_de_juego))
-                cantidad_muertes = 0
-                for muertes, nombre_campeones,modo in lista_partida_enContra_nombre:
-                    if muertes > cantidad_muertes:
-                        cantidad_muertes = muertes
-                        nombre_delCampeon = nombre_campeones
-                        modo_juego = modo
-                print(f"En la partida con mas muertes en contra  fue de: {cantidad_muertes} usando al campeon {nombre_delCampeon} y en modo {modo_juego}")
-
-    def pedir_dni(self,condicion):
-        solicitar_dni = prompt(title="titulo",prompt="Ingrese su ultimo numero de DNI")
-        solicitar_dni = int(solicitar_dni)
-        self.funcion_llamar(condicion,solicitar_dni)
+                
 
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
