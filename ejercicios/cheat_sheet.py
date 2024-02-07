@@ -88,6 +88,7 @@ items() devuelve tuplas que contienen los pares clave y valor de cada diccionari
 
 round(variable, y cantidad de decimales)
 
+max(lista_personaje_mas_kill, key=lambda x: x[1])
 
 '''
 

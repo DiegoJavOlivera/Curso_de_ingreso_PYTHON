@@ -1,9 +1,8 @@
-import tkinter
+
 from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
-
 '''
 nombre: Diego Javier
 apellido: Olivera
@@ -33,11 +32,12 @@ class App(customtkinter.CTk):
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
 
-    def btn_mostrar_on_click(self):
+    def btn_mostrar_on_click(self):    
         solicitarNombre = prompt(title="Solicitud de nombre", prompt="Ingresar nombre")
-        nombre = self.txt_nombre.insert(0,solicitarNombre)
-        alert(title="soliciar nombre", message=nombre)
-        pass
+
+        self.txt_nombre.insert(0,solicitarNombre)
+        self.txt_nombre.delete(0,2)
+
         
     
 if __name__ == "__main__":

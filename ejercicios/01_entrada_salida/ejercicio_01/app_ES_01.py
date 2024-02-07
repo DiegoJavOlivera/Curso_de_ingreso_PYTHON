@@ -29,11 +29,9 @@ class App(customtkinter.CTk):
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
     def btn_mostrar_on_click(self):
-        print("Esto no funciona")
-        alert(title="Alert", message="Esto no anda, funciona")
+        alert("Primer ejercicio", "esto no anda, funciona")
+
         
-
-
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

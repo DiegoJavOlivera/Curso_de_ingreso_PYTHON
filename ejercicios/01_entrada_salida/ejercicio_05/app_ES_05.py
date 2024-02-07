@@ -44,7 +44,7 @@ class App(customtkinter.CTk):
         nombreYEdad = "Usted se llama " + self.txt_nombre.get()+ " y tiene " + self.txt_edad.get() + " años de edad"
 
         alert(title="solicitar nombre y edad", message = nombreYEdad)
-        pass
+
 
 
         

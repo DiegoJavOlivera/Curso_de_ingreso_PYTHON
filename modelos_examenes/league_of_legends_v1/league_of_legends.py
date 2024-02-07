@@ -112,7 +112,6 @@ class App(customtkinter.CTk):
             "Clasificatoria", "ARAM", "Clasificatoria", "Normal", "Clasificatoria",
         ]
 
-
     def btn_cargar_campeones_on_click(self):
         contador = 0
         while contador > 10:
@@ -177,10 +176,12 @@ class App(customtkinter.CTk):
         for itera in lista_informe1:
             print(f"La siguiente lista muestra la posicion y el nombre de los campeones ingresados: {itera}")
         self.funcion_llamar(False)
+        self.funcion_llamar(True)
         pass
 
     
     def btn_mostrar_informe_2_on_click(self):
+        self.funcion_llamar(False)
         self.funcion_llamar(True)
         pass
 
